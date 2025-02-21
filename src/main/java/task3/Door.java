@@ -15,6 +15,7 @@ public class Door extends EnvironmentObject {
             System.out.println(name + " успешно закрыта.");
         } else {
             this.state = State.OPEN;  // Если прилегание плохое, дверь остаётся открытой.
+
             System.out.println(name + " не может быть закрыта, из-за плохого прилегания");
         }
     }
