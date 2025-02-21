@@ -57,7 +57,6 @@ public class SecFunctionTest {
         double expected = 1.0 / Math.cos(x); // ~5.883490084827342
         double result = secFunc.sec(x);
         System.out.println("Test sec(1.4): x = " + x + ", expected = " + expected + ", result = " + result);
-        // Из-за медленной сходимости ряда допускаем погрешность до 0.5
         assertEquals(expected, result, 0.5, "Неверное приближение для x = 1.4");
     }
 }

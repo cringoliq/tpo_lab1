@@ -17,7 +17,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Используем JUnit BOM для согласования версий -->
+            <!-- JUnit BOM для согласования всех версий JUnit -->
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
@@ -29,29 +29,26 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- JUnit Jupiter -->
+        <!-- JUnit 5 (Jupiter) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- JUnit Platform Launcher -->
+
+        <!-- JUnit Platform Launcher (для запуска тестов в IDE и CI/CD) -->
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Исключаем JUnit Vintage, если он где-то подтягивается -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.11.3</version>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
