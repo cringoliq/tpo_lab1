@@ -15,7 +15,8 @@ public class Door extends EnvironmentObject{
             this.state = State.CLOSED;
             System.out.println(name + "успешно закрыта.");
         } else {
-            System.out.println(name + "не может быть закрыта, из-за плохого прилегания");
+            this.state = State.OPEN;
+            System.out.println(name + " не может быть закрыта, из-за плохого прилегания");
         }
     }
     public void unlock(){
@@ -24,6 +25,6 @@ public class Door extends EnvironmentObject{
 
     @Override
     public void changeState(State newState) {
-
+        this.state = newState;
     }
 }

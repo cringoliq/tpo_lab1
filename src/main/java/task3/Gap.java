@@ -11,6 +11,6 @@ public class Gap{
 
 
     public boolean canPass(Creature creature) {
-        return this.width >= 1.8;
+        return this.width >= 1.5;
     }
 }
