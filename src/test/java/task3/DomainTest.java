@@ -2,6 +2,9 @@ package task3;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -22,7 +25,7 @@ public class DomainTest {
         Voice furryVoice = new Voice(10, "безумное верещание");
 
         arthur = new Person("Артур", Size.MEDIUM, 75, 10, humanVoice, Emotion.HAPPY);
-        furry = new Furry("Мохнатый", Size.VERY_SMALL, 2, 1, furryVoice, 60);
+        furry = new Furry("Мохнатый", Size.VERY_SMALL, 2, 1, furryVoice, Emotion.ANGRY,60);
 
         cabinDoor = new Door("Дверь кабины", Material.IRON, Size.BIG, 20, State.CLOSED, 40);
         wideGap = new Gap(1.5, 0.5);
@@ -40,20 +43,28 @@ public class DomainTest {
         Тестирование makeSound для furry and person
     */
 
-    @Test
-    public void testArthurSoundVolume() {
-        double expectedVolume = arthur.voice.getVolume() * Math.log(arthur.strength + 1) * arthur.size.getFactor();
 
 
-        assertEquals(expectedVolume, arthur.makeSound(), 0.01);
+
+
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/data_volume.csv", numLinesToSkip = 1)
+    public void testFurrySoundVolume(int volume, int strength, Size size, Emotion emotion, double expectedValue) {
+        Voice furryVoice = new Voice(volume, "верещание");
+        furry = new Furry("Мохнатый", size, 2, strength, furryVoice, emotion,60);
+
+        assertEquals(expectedValue, furry.makeSound(), 0.01);
     }
 
-    @Test
-    public void testFurrySoundVolume() {
-        double expectedVolume = furry.voice.getVolume() * Math.log(furry.strength + 1) * furry.size.getFactor();
+    @ParameterizedTest
+    @CsvFileSource(resources = "/data_volume.csv", numLinesToSkip = 1)
+    public void testPersonSoundVolume(int volume, int strength, Size size, Emotion emotion, double expectedValue) {
+        Voice personVoice = new Voice(volume, "шепот");
+        arthur = new Person("Артур", size, 75, strength, personVoice, emotion);
 
 
-        assertEquals(expectedVolume,  furry.makeSound(), 0.01);
+        assertEquals(expectedValue,  arthur.makeSound(), 0.01);
     }
 
 

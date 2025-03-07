@@ -9,7 +9,7 @@ public class Person extends Creature {
     private final Emotion emotion;
 
     public Person(String name, Size size, double weight, int strength, Voice voice, Emotion emotion) {
-        super(name, size, weight, strength, voice);
+        super(name, size, weight, strength, voice, emotion);
         this.emotion = emotion;
     }
 

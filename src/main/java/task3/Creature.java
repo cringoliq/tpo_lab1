@@ -12,7 +12,7 @@ abstract class Creature {
     protected int strength;
     protected Voice voice;
     protected List<Action> actions = new ArrayList<>();
-    protected Enum emotion;
+    protected Emotion emotion;
 
     public Creature(String name, Size size, double weight, int strength, Voice voice, Emotion emotion) {
         this.name = name;

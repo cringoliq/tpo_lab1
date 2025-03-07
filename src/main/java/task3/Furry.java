@@ -4,8 +4,8 @@ public class Furry extends Creature {
     private int fingerAmount;
 
 
-    public Furry(String name, Size size, double weight, int strength, Voice voice, int fingerAmount) {
-        super(name, size, weight, strength, voice);
+    public Furry(String name, Size size, double weight, int strength, Voice voice, Emotion emotion ,int fingerAmount) {
+        super(name, size, weight, strength, voice, emotion);
         this.fingerAmount = fingerAmount;
     }
 
