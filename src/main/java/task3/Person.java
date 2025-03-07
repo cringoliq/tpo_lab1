@@ -6,7 +6,7 @@ import java.util.List;
 public class Person extends Creature {
 
 
-    private Emotion emotion;
+    private final Emotion emotion;
 
     public Person(String name, Size size, double weight, int strength, Voice voice, Emotion emotion) {
         super(name, size, weight, strength, voice);
@@ -14,8 +14,10 @@ public class Person extends Creature {
     }
 
     @Override
-    public void makeSound() {
-        System.out.println(name + " издает звук: " + voice.getDescription());
+    public double makeSound() {
+        double computedVolume = computeSoundVolume();
+        System.out.printf("%s издает звук: %s с громкостью %.2f дБ%n", name, voice.getDescription(), computedVolume);
+        return computedVolume;
     }
 
 

@@ -18,13 +18,13 @@ public class DomainTest {
 
     @BeforeEach
     public void setup(){
-        Voice humanVoice = new Voice(5, 222, "deep voice");
-        Voice furryVoice = new Voice(1, 999, "безумное верещание");
+        Voice humanVoice = new Voice(5,"deep voice");
+        Voice furryVoice = new Voice(10, "безумное верещание");
 
         arthur = new Person("Артур", Size.MEDIUM, 75, 10, humanVoice, Emotion.HAPPY);
-        furry = new Furry("Мохнатый", Size.VERY_SMALL, 2, 1, furryVoice, 6);
+        furry = new Furry("Мохнатый", Size.VERY_SMALL, 2, 1, furryVoice, 60);
 
-        cabinDoor = new Door("Дверь кабины", Material.IRON, Size.BIG, 200, State.CLOSED, 4);
+        cabinDoor = new Door("Дверь кабины", Material.IRON, Size.BIG, 20, State.CLOSED, 40);
         wideGap = new Gap(1.5, 0.5);
         narrowGap = new Gap(0.5, 0.5);
 
@@ -41,17 +41,19 @@ public class DomainTest {
     */
 
     @Test
-    public void testPersonMakesSound(){
-        arthur.makeSound();
-        String output = outputStream.toString().trim();
-        assertEquals("Артур издает звук: deep voice", output);
+    public void testArthurSoundVolume() {
+        double expectedVolume = arthur.voice.getVolume() * Math.log(arthur.strength + 1) * arthur.size.getFactor();
+
+
+        assertEquals(expectedVolume, arthur.makeSound(), 0.01);
     }
 
     @Test
-    public void testFurryMakesSound(){
-        furry.makeSound();
-        String output = outputStream.toString().trim();
-        assertEquals("Мохнатый издает верещание.", output);
+    public void testFurrySoundVolume() {
+        double expectedVolume = furry.voice.getVolume() * Math.log(furry.strength + 1) * furry.size.getFactor();
+
+
+        assertEquals(expectedVolume,  furry.makeSound(), 0.01);
     }
 
 
@@ -60,7 +62,7 @@ public class DomainTest {
     */
     @Test
     public void testDoorLockFailsIfFittingTooLow(){
-        cabinDoor.setFitting(2);
+        cabinDoor.setFitting(20);
         cabinDoor.lock();
 
         assertNotEquals(State.CLOSED, cabinDoor.getState());
@@ -74,7 +76,7 @@ public class DomainTest {
 
     @Test
     public void testDoorLocksSuccessfully(){
-        cabinDoor.setFitting(6);
+        cabinDoor.setFitting(50);
         cabinDoor.lock();
         assertEquals(State.CLOSED, cabinDoor.getState());
     }

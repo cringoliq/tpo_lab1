@@ -10,8 +10,10 @@ public class Furry extends Creature {
     }
 
     @Override
-    public void makeSound() {
-        System.out.println(name + " издает верещание.");
+    public double makeSound() {
+        double computedVolume = computeSoundVolume();
+        System.out.printf("%s издает верещание: %s с громкостью %.2f дБ%n", name, voice.getDescription(), computedVolume);
+        return computedVolume;
     }
 
     public void stickHand(Gap gap){

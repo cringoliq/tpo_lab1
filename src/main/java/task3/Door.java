@@ -9,8 +9,14 @@ public class Door extends EnvironmentObject {
         this.fitting = fitting;
     }
 
+
+
     public void lock() {
-        if (fitting > 5) {
+        double massEffect = mass * size.getFactor();
+
+        double closingDifficulty = fitting * material.getDensity() * size.getFactor() - massEffect;
+
+        if (closingDifficulty > 30) {
             this.state = State.CLOSED;
             System.out.println(name + " успешно закрыта.");
         } else {

@@ -23,7 +23,10 @@ abstract class Creature {
         actions.add(new Action(type, description));
     }
 
-    public abstract void makeSound();
+    public abstract double makeSound();
 
 
+    public double computeSoundVolume() {
+        return voice.getVolume() * Math.log(strength + 1) * size.getFactor();
+    }
 }

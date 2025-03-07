@@ -1,8 +1,8 @@
 package task3;
 
 public class Gap {
-    private double width;
-    private double height;
+    private final double width;
+    private final double height;
 
     public Gap(double width, double height) {
         this.width = width;
