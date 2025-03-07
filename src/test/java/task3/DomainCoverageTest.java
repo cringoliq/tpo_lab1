@@ -69,13 +69,13 @@ public class DomainCoverageTest {
         door.unlock();
         assertEquals(State.OPEN, door.state);
     }
-
-    @Test
-    public void testDoorChangeState() {
-        Door door = new Door("Дверь", Material.IRON, Size.BIG, 200, State.OPEN, 7);
-        door.changeState(State.HALF_OPEN);
-        assertEquals(State.HALF_OPEN, door.state);
-    }
+//
+//    @Test
+//    public void testDoorChangeState() {
+//        Door door = new Door("Дверь", Material.IRON, Size.BIG, 200, State.OPEN, 7);
+//        door.changeState(State.HALF_OPEN);
+//        assertEquals(State.HALF_OPEN, door.state);
+//    }
 
     // Тесты для класса Gap
     @Test

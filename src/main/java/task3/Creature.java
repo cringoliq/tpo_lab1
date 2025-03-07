@@ -19,9 +19,11 @@ abstract class Creature {
         this.voice = voice;
     }
 
+    public void performAction(ActionType type, String description) {
+        actions.add(new Action(type, description));
+    }
+
     public abstract void makeSound();
 
-    public String getName() {
-        return name;
-    }
+
 }

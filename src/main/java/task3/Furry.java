@@ -11,14 +11,17 @@ public class Furry extends Creature {
 
     @Override
     public void makeSound() {
-        System.out.println(name + "издает верещание.");
+        System.out.println(name + " издает верещание.");
     }
 
     public void stickHand(Gap gap){
         if(gap.canPass(this)){
-            System.out.println(name + "просовывает руку через щель.");
+            System.out.println(name + " просовывает руку через щель.");
+            actions.add(new Action(ActionType.MOVEMENT, name + " просунул руку через щель."));
         } else {
-            System.out.println(name + "не может просунуть руку через щель");
+            System.out.println(name + " не может просунуть руку через щель");
+            actions.add(new Action(ActionType.MOVEMENT, name + " попытался просунуть руку, но не смог."));
         }
     }
+
 }
